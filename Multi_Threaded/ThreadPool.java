@@ -1,5 +1,3 @@
-package Multi_Threaded;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -23,7 +21,7 @@ public class ThreadPool {
     }
 
     public static void main(String[] args) {
-        int port = 8080;
+        int port = 8010;
         int poolSize = 50;
         ThreadPool server = new ThreadPool(poolSize);
 

@@ -1,5 +1,3 @@
-package Single_Threaded;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,13 +8,14 @@ import java.net.UnknownHostException;
 
 public class Client {
     public void run() throws UnknownHostException, IOException{
-        int port = 8090;
+        int port = 8010;
         InetAddress address = InetAddress.getByName("localhost");
         Socket socket = new Socket(address, port);
         PrintWriter toSocket = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader fromSocket = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         toSocket.println("Hello world from the socket " + socket.getLocalSocketAddress());
         String line = fromSocket.readLine();
+        System.out.println(line);
         toSocket.close();
         fromSocket.close();
         socket.close();

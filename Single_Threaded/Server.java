@@ -1,5 +1,3 @@
-package Single_Threaded;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,21 +8,23 @@ import java.net.UnknownHostException;
 
 public class Server {
     public void run() throws IOException, UnknownHostException {
-        int port = 8080;
-        ServerSocket socket;
-        try {
-            socket = new ServerSocket(port);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        int port = 8010;
+        ServerSocket socket = new ServerSocket(port);
         socket.setSoTimeout(10000);
         while (true) {
-            System.out.println("Server is listening on port: "+ port);
-            Socket acceptedConnection = socket.accept();
-            System.out.println("Connected to : "+ acceptedConnection.getRemoteSocketAddress());
-            PrintWriter toClient = new PrintWriter(acceptedConnection.getOutputStream(), true);
-            BufferedReader fromClient = new BufferedReader(new InputStreamReader(acceptedConnection.getInputStream()));
-            toClient.println("Hello world from the server");
+            try {
+                System.out.println("Server is listening on port: "+ port);
+                Socket acceptedConnection = socket.accept();
+                System.out.println("Connected to : "+ acceptedConnection.getRemoteSocketAddress());
+                PrintWriter toClient = new PrintWriter(acceptedConnection.getOutputStream(), true);
+                BufferedReader fromClient = new BufferedReader(new InputStreamReader(acceptedConnection.getInputStream()));
+                toClient.println("Hello world from the server");
+                toClient.close();
+                fromClient.close();
+                acceptedConnection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }

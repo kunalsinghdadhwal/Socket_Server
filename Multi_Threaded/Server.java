@@ -1,5 +1,3 @@
-package Multi_Threaded;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -18,7 +16,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        int port = 8080;
+        int port = 8010;
         Server server = new Server();
 
         try {
