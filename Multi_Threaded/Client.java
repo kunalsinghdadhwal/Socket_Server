@@ -20,8 +20,10 @@ public class Client {
                             BufferedReader fromSocket = new BufferedReader(new InputStreamReader(socket.getInputStream()))
                     ) {
                         toSocket.println("Hello from Client " + socket.getLocalSocketAddress());
-                        String line = fromSocket.readLine();
-                        System.out.println("Response from Server: " + line);
+                        String line;
+                        while((line = fromSocket.readLine()) != null){
+                            System.out.println(line);
+                        }
                     } catch (IOException e){
                         e.printStackTrace();
                     }
